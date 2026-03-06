@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { resumeData } from '../data/resume';
 import { ChevronDown, Download, MapPin, ArrowRight } from 'lucide-react';
+import profileImage from './lalitPf.jpeg';
+import resumePdf from './lalitResume.pdf';
 
 export const Hero: React.FC = () => {
   const handleScroll = () => {
@@ -97,7 +99,7 @@ export const Hero: React.FC = () => {
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </span>
             </button>
-            <a href="src/components/lalitResume.pdf" target="_blank"> <button
+            <a href={resumePdf} target="_blank"> <button
               
               className="group w-full sm:w-auto px-8 py-4 bg-transparent hover:bg-slate-800/50 text-white rounded-full font-semibold transition-all border border-slate-600 hover:border-blue-400/50 flex items-center justify-center gap-2 backdrop-blur-sm hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]"
             >
@@ -122,8 +124,7 @@ export const Hero: React.FC = () => {
             {/* Image Container */}
             <div className="absolute inset-4 bg-slate-900 rounded-[2.5rem] overflow-hidden border border-slate-800 shadow-2xl group">
               <img 
-                // src="https://picsum.photos/seed/professional/800/800" 
-                src="src/components/lalitPf.jpeg"
+                src={profileImage}
                 alt={resumeData.basics.name}
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100"
                 referrerPolicy="no-referrer"
