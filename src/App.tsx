@@ -18,6 +18,10 @@ import { Education } from './components/Education';
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
 
+  React.useEffect(() => {
+    console.log("App: Component mounted, showSplash is:", showSplash);
+  }, [showSplash]);
+
   const handleSplashComplete = useCallback(() => {
     console.log("App: Splash complete, transitioning to main content");
     setShowSplash(false);
