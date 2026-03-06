@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { Splash } from './components/Splash';
 import { AnimatedBackground } from './components/AnimatedBackground';
@@ -18,14 +18,21 @@ import { Education } from './components/Education';
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
 
+  const handleSplashComplete = useCallback(() => {
+    console.log("App: Splash complete, transitioning to main content");
+    setShowSplash(false);
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50 font-sans selection:bg-blue-500/30">
-      <AnimatePresence>
-        {showSplash && <Splash onComplete={() => setShowSplash(false)} />}
+      <AnimatePresence mode="wait">
+        {showSplash && (
+          <Splash key="splash" onComplete={handleSplashComplete} />
+        )}
       </AnimatePresence>
 
       {!showSplash && (
-        <>
+        <div key="main-content">
           <AnimatedBackground />
           <Navigation />
           <main>
@@ -39,7 +46,7 @@ export default function App() {
           <footer className="py-8 text-center text-slate-500 text-sm border-t border-slate-800/50 relative z-10">
             <p>© {new Date().getFullYear()} Lalit Sawant. All rights reserved.</p>
           </footer>
-        </>
+        </div>
       )}
     </div>
   );

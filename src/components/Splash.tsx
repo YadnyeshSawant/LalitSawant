@@ -21,12 +21,16 @@ export const Splash: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
 
     const timer = setInterval(() => {
       setProgress(prev => {
-        if (prev >= 100) {
+        const next = prev + increment;
+        if (next >= 100) {
           clearInterval(timer);
-          setTimeout(onComplete, 400);
+          setTimeout(() => {
+            console.log("Splash: Sequence finished, triggering onComplete");
+            onComplete();
+          }, 400);
           return 100;
         }
-        return prev + increment;
+        return next;
       });
     }, interval);
 
